@@ -1,8 +1,10 @@
 var paddle, ball, score;
+ var devWidth = window.screen.width;
+ var devHeight = window.screen.height;
 function setup(){
-  createCanvas(400,400);
-  paddle = createSprite(200,360,70,10);
-  ball = createSprite(200, 340, 10, 10);
+  createCanvas(devWidth * 99/100, devHeight * 80/100 );
+  paddle = createSprite(devWidth * 45/100, devHeight * 78/100, 70, 10);
+  ball = createSprite(devWidth * 45/100, devHeight * 70/100, 10, 10);
   paddle.shapeColor = "white";
   ball.shapeColor = "white";
   score = 0;
@@ -11,11 +13,11 @@ function setup(){
 
 function draw(){
   background("black");
-  text("SPACE TO START", 290,20)
+  text("SPACE TO START", devWidth*45/100, 20)
   text("SCORE : " + score, 10, 20);
   paddle.x = mouseX;
   if(keyDown("space")){
-   ball.setVelocity(7, -5); 
+   ball.setVelocity(12, -10); 
  }
  if(ball.isTouching(paddle)){
    score = score + 100;
@@ -23,7 +25,7 @@ function draw(){
   ball.bounceOff(edges);
   ball.bounceOff(paddle);
   if(ball.y >= paddle.y){
-   text("GAME OVER", 160, 200);
+   text("GAME OVER", devWidth*47/100, devHeight * 40/100);
    ball.destroy()
  }
   drawSprites();
